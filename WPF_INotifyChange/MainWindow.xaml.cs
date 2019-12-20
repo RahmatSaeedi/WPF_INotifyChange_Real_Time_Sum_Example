@@ -20,11 +20,23 @@ namespace WPF_INotifyChange
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-    public class Sum : INotifyPropertyChanged
+    public class Calculate : INotifyPropertyChanged
     {
         private string num1;
         private string num2;
-        private string result;
+        private string sum;
+        private string difference;
+        private string product;
+        private string quotient;
+
+        private void NotifyXAndUpdateAll(string x)
+        {
+            OnPropertyChanged(x);
+            OnPropertyChanged("Sum");
+            OnPropertyChanged("Difference");
+            OnPropertyChanged("Product");
+            OnPropertyChanged("Quotient");
+        }
 
         public string Num1
         {
@@ -37,8 +49,7 @@ namespace WPF_INotifyChange
                 {
                     num1 = value;
                 }
-                OnPropertyChanged("Num1");
-                OnPropertyChanged("Result");
+                NotifyXAndUpdateAll("Num1");
             }
         }
         public string Num2
@@ -52,25 +63,53 @@ namespace WPF_INotifyChange
                 {
                     num2 = value;
                 }
-                OnPropertyChanged("Num2");
-                OnPropertyChanged("Result");
+                NotifyXAndUpdateAll("Num2");
             }
         }
-        public string Result
+        public string Sum
         {
             get
             {
-                int res = int.Parse(Num1) + int.Parse(Num2);
-                return res.ToString();
+                return (int.Parse(Num1) + int.Parse(Num2)).ToString();
             }
             set
             {
-                int res = int.Parse(Num1) + int.Parse(Num2);
-                result = res.ToString();
-                OnPropertyChanged("Result");
+                sum = (int.Parse(Num1) + int.Parse(Num2)).ToString();
+                OnPropertyChanged("Sum");
             }
         }
 
+        public string Difference
+        {
+            get
+            {
+                return (int.Parse(Num1) - int.Parse(Num2)).ToString();
+            }
+            set
+            {
+                difference = (int.Parse(Num1) - int.Parse(Num2)).ToString();
+                OnPropertyChanged("Difference");
+            }
+        }
+        public string Product
+        {
+            get
+            {
+                return (int.Parse(Num1) * int.Parse(Num2)).ToString();
+            }
+            set
+            {
+                product = (int.Parse(Num1) * int.Parse(Num2)).ToString();
+                OnPropertyChanged("Product");
+            }
+        }
+        public string Quotient
+        {
+            get
+            {
+                return (double.Parse(Num1) / double.Parse(Num2)).ToString();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -85,12 +124,17 @@ namespace WPF_INotifyChange
     }
     public partial class MainWindow : Window
     {
-        public Sum SumObject { set; get; }
+        public Calculate SumObject { set; get; }
         public MainWindow()
         {
             InitializeComponent();
-            SumObject = new Sum { Num1 = "1", Num2 = "2" };
+            SumObject = new Calculate { Num1 = "1", Num2 = "2" };
             this.DataContext = SumObject;
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

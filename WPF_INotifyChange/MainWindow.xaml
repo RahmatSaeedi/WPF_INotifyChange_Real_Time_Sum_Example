@@ -10,18 +10,31 @@
         <SolidColorBrush Opacity="0.2" Color="PaleVioletRed"></SolidColorBrush>
     </Window.Background>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="25" FontStyle="Italic" FontWeight="SemiBold" Foreground="White" Background="Red" Click="Exit" Margin="0,0,0,10">X</Button>
         <WrapPanel>
             <Label Content="Number 1" Width="100"></Label>
-            <TextBox Width="100" Height="24" Text="{Binding Path=Num1, Mode=TwoWay}"></TextBox>
+            <TextBox Width="200" Height="24" Text="{Binding Path=Num1, Mode=TwoWay}" BorderThickness="1" Background="LightGoldenrodYellow"></TextBox>
         </WrapPanel>
 
         <WrapPanel>
             <Label Content="Number 2" Width="100"></Label>
-            <TextBox Width="100" Height="24" Text="{Binding Path=Num2, Mode=TwoWay}"></TextBox>
+            <TextBox Width="200" Height="24" Text="{Binding Path=Num2, Mode=TwoWay}" BorderThickness="1" Background="LightGoldenrodYellow"></TextBox>
         </WrapPanel>
         <WrapPanel>
             <Label  Content="Sum" Width="100"></Label>
-            <TextBox Width="100" Height="24" Text="{Binding Path=Result, Mode=TwoWay}"></TextBox>
+            <TextBox Width="200" Height="24" Text="{Binding Path=Sum, Mode=TwoWay}"></TextBox>
+        </WrapPanel>
+        <WrapPanel>
+            <Label  Content="Difference" Width="100"></Label>
+            <TextBox Width="200" Height="24" Text="{Binding Path=Difference, Mode=TwoWay}"></TextBox>
+        </WrapPanel>
+        <WrapPanel>
+            <Label  Content="Product" Width="100"></Label>
+            <TextBox Width="200" Height="24" Text="{Binding Path=Product, Mode=TwoWay}"></TextBox>
+        </WrapPanel>
+        <WrapPanel>
+            <Label  Content="Quotient" Width="100"></Label>
+            <TextBlock Width="200" Height="24" Text="{Binding Path=Quotient, Mode=OneWay}"></TextBlock>
         </WrapPanel>
     </StackPanel>
 </Window>
